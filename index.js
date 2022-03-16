@@ -76,9 +76,8 @@ app.use(express.json());
 
 // const MONGO_URL = "mongodb://localhost";
 
-const MONGO_URL = "mongodb+srv://pugalenthi1:welcome123@cluster0.66pvx.mongodb.net";
+const MONGO_URL = process.env.MONGO_URL;
 
-console.log(process.env.MONGO_URL)
 
 
 async function createConnection(){
@@ -110,8 +109,10 @@ app.listen(PORT,()=> console.log("server is started in port 4000"));
 app.get("/movies", async (req,res)=> {
   
   const movie = await client.db("b30wd").collection("movies").find({}).toArray();
-
   res.send(movie)
+  
+  console.log(movie)
+
 })
 
 
